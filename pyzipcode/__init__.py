@@ -16,7 +16,7 @@ class ConnectionManager(object):
         conn = sqlite3.connect(db_location)
         conn.close()
             
-    def query(self, sql, args):
+    def query(self, sql, args=tuple()):
         conn = None
         retry_count = 0
         while not conn and retry_count <= 10:
