@@ -1,7 +1,6 @@
 from setuptools import setup, find_packages
-import sys, os
 
-version = '0.4'
+version = '1.0'
 
 try:
     import sqlite3
@@ -10,22 +9,22 @@ except ImportError:
 else:
     requires = []
 
-setup(name='pyzipcode',
-      version=version,
-      description="query zip codes and location data",
-      long_description=open("README.txt").read() + '\n\n' + open('CHANGES.txt').read(),
-      classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-      keywords='zip code distance',
-      author='Nathan Van Gheem',
-      author_email='vangheem@gmail.com',
-      url='',
-      license='GPL',
-      packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-      package_data={'pyzipcode': ['zipcodes.db']},
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=requires,
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
-      )
+setup(
+    name='pyzipcode3',
+    version='1.1',
+    url='https://www.github.com/dvf/pyzipcode3',
+    description="Search by ZIP Code, City and Geo data",
+    keywords='zip code distance geo',
+    author='Daniel van Flymen',
+    author_email='vanflymen@gmail.com',
+    license='GPL',
+    packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
+    package_data={
+        'pyzipcode': ['zipcodes.db', ]
+    },
+    include_package_data=True,
+    download_url='https://www.github.com/dvf/pyzipcode3/archive/1.0.tar.gz',
+    zip_safe=False,
+    install_requires=requires,
+    classifiers=[],
+)

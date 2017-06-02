@@ -1,9 +1,10 @@
+import csv
+
 try:
     import sqlite3
 except ImportError:
     from pysqlite2 import dbapi2 as sqlite3
-import os
-import csv
+
 try:
     from settings import db_location
 except:
@@ -18,23 +19,25 @@ c.execute("CREATE INDEX zip_index ON ZipCodes(zip);")
 c.execute("CREATE INDEX city_index ON ZipCodes(city);")
 c.execute("CREATE INDEX state_index ON ZipCodes(state);")
 
-reader = csv.reader(open('zipcode.csv', "rb"))
-reader.next() # prime it
-    
-for row in reader:
-    zip, city, state, lat, longt, timezone, dst = row
-    
-    c.execute('INSERT INTO ZipCodes values("%s", "%s", "%s", %s, %s, %s, %s)' % (
-        zip,
-        city,
-        state,
-        float(longt),
-        float(lat),
-        timezone,
-        dst
-    ))
-    
-conn.commit()
+with open('zipcode.csv', "rb") as csv_file:
 
-# We can also close the cursor if we are done with it
-c.close()
+    # Initialize a CSV Reader
+    reader = csv.reader(open('zipcode.csv', "rb"))
+
+    # Ignore the header row
+    reader.next()
+
+    for row in reader:
+        zip, city, state, lat, longt, timezone, dst = row
+
+        c.execute('INSERT INTO ZipCodes values("%s", "%s", "%s", %s, %s, %s, %s)' % (
+            zip,
+            city,
+            state,
+            float(longt),
+            float(lat),
+            timezone,
+            dst
+        ))
+
+    conn.commit()

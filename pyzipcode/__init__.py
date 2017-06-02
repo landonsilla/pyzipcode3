@@ -1,10 +1,11 @@
+import time
 from .settings import db_location
+
 try:
     import sqlite3
 except ImportError:
     from pysqlite2 import dbapi2 as sqlite3
-import math
-import time
+
 
 class ConnectionManager(object):
     """
@@ -20,8 +21,7 @@ class ConnectionManager(object):
         conn = None
         retry_count = 0
         while not conn and retry_count <= 10:
-        # If there is trouble reading the file, retry for 10 attempts
-        # then just give up...
+            # If there is trouble reading the file, retry for 10 attempts then just give up...
             try:
                 conn = sqlite3.connect(db_location)
             except sqlite3.OperationalError as x:
@@ -41,6 +41,7 @@ ZIP_QUERY = "SELECT * FROM ZipCodes WHERE zip=?"
 ZIP_RANGE_QUERY = "SELECT * FROM ZipCodes WHERE longitude >= %s and longitude <= %s AND latitude >= %s and latitude <= %s"
 ZIP_FIND_QUERY = "SELECT * FROM ZipCodes WHERE city LIKE ? AND state LIKE ?"
 
+
 class ZipCode(object):
     def __init__(self, data):
         self.zip = data[0]
@@ -51,15 +52,18 @@ class ZipCode(object):
         self.timezone = data[5]
         self.dst = data[6]
 
+
 def format_result(zips):
     if len(zips) > 0:
         return [ZipCode(zip) for zip in zips]
     else:
         return None
 
+
 class ZipNotFoundException(Exception):
     pass
-    
+
+
 class ZipCodeDatabase(object):
     
     def __init__(self, conn_manager=None):
@@ -106,9 +110,3 @@ class ZipCodeDatabase(object):
             raise IndexError("Couldn't find zip")
         else:
             return zip[0]
-            
-    
-        
-        
-        
-        
