@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '1.0'
+version = '1.2'
 
 try:
     import sqlite3
@@ -11,7 +11,7 @@ else:
 
 setup(
     name='pyzipcode3',
-    version='1.1',
+    version='1.2',
     url='https://www.github.com/dvf/pyzipcode3',
     description="Search by ZIP Code, City and Geo data",
     keywords='zip code distance geo',
@@ -23,7 +23,7 @@ setup(
         'pyzipcode': ['zipcodes.db', ]
     },
     include_package_data=True,
-    download_url='https://www.github.com/dvf/pyzipcode3/archive/1.0.tar.gz',
+    download_url='https://www.github.com/dvf/pyzipcode3/archive/1.2.tar.gz',
     zip_safe=False,
     install_requires=requires,
     classifiers=[],
