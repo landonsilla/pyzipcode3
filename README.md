@@ -1,7 +1,7 @@
 # pyzipcode3
 
 This package will allow you to get zip code information using the Maxmind Cities DB. 
-This is a fork of [https://bitbucket.org/vangheem/pyzipcode](https://bitbucket.org/vangheem/pyzipcode) but has been updated to support Python 3.
+Initially a fork of [https://bitbucket.org/vangheem/pyzipcode](https://bitbucket.org/vangheem/pyzipcode) but has been updated to support Python 3.
 
 *pyzipcode* uses a local sqlite database. You can replace it with your own other storage mechanism with a little effort.
 
@@ -18,7 +18,7 @@ This is a fork of [https://bitbucket.org/vangheem/pyzipcode](https://bitbucket.o
 	>>> zipcode = zcdb[10013]
 	>>> zipcode.zip
 	u'10013'
-	>>> zipcode.city
+	>>> zipcode.place
 	u'New York'
 	>>> zipcode.state
 	u'NY'
@@ -34,7 +34,7 @@ This is a fork of [https://bitbucket.org/vangheem/pyzipcode](https://bitbucket.o
 
 	>>> from pyzipcode import ZipCodeDatabase
 	>>> zcdb = ZipCodeDatabase()
-	>>> len(zcdb.find_zip(city="Oshkosh"))
+	>>> len(zcdb.find_zip(place="Oshkosh"))
 	7
 	
 
