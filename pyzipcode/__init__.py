@@ -39,7 +39,7 @@ class ConnectionManager(object):
 
 
 ZIP_QUERY = "SELECT * FROM zip WHERE zip_code=?"
-ZIP_RANGE_QUERY = "SELECT * FROM zip WHERE longitude >= %s AND longitude <= %s AND latitude >= %s AND latitude <= %s"
+ZIP_RANGE_QUERY = "SELECT * FROM zip WHERE longitude >= ? AND longitude <= ? AND latitude >= ? AND latitude <= ?"
 ZIP_FIND_QUERY = "SELECT * FROM zip WHERE place LIKE ? AND state_code LIKE ?"
 
 
