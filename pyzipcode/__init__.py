@@ -81,10 +81,12 @@ class ZipCodeDatabase(object):
         long_range = (zip_code.longitude - (radius / 69.0), zip_code.longitude + (radius / 69.0))
         lat_range = (zip_code.latitude - (radius / 49.0), zip_code.latitude + (radius / 49.0))
 
-        return format_result(self.conn_manager.query(ZIP_RANGE_QUERY % (
-            long_range[0], long_range[1],
-            lat_range[0], lat_range[1]
-        )))
+        result = self.conn_manager.query(
+            ZIP_RANGE_QUERY,
+            (long_range[0], long_range[1], lat_range[0], lat_range[1])
+        )
+
+        return format_result(result)
 
     def find_zip(self, place=None, state=None):
         if place is None:
