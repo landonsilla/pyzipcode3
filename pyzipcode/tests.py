@@ -12,7 +12,15 @@ class TestSequenceFunctions(unittest.TestCase):
         self.assertEqual(zip.zip, '54115')
         self.assertEqual(zip.place, "De Pere")
         self.assertEqual(zip.state, "WI")
-        
+
+    def test_zip_code_starts_with_zero(self):
+        zip_code = '04330'
+        zip = self.db[zip_code]
+        self.assertEqual(zip.place, "Augusta")
+
+        zip = self.db[int(zip_code)]
+        self.assertEqual(zip.place, "Augusta")
+
     def test_correct_latitude_value(self):
         zip = self.db[54115]
         self.assertTrue(44.43 < zip.latitude < 44.44)
