@@ -105,7 +105,7 @@ class ZipCodeDatabase(object):
         return format_result(self.conn_manager.query(ZIP_QUERY, (zip_code,)))
 
     def __getitem__(self, zip_code):
-        zip_code = self.get(str(zip_code))
+        zip_code = self.get(str(zip_code).zfill(5))
         if zip_code is None:
             raise IndexError("Couldn't find ZIP")
         else:
